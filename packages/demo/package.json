@@ -10,13 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "fetch-buddy": "0.1.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-router": "^7.3.0",
+    "swr": "^2.3.3"
   },
   "devDependencies": {
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react-swc": "^3.8.0",
+    "mockingjson": "^0.0.4",
     "typescript": "~5.7.2",
     "vite": "^6.2.0"
   }

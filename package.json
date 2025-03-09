@@ -14,8 +14,8 @@
     ]
   },
   "scripts": {
-    "build": "yarn tsc --project tsconfig.build.json",
-    "dev": "yarn build --watch"
+    "build": "turbo build",
+    "release": "npx changeset publish"
   },
   "files": [
     "dist"
@@ -67,9 +67,11 @@
   "homepage": "https://github.com/green-flash-digital/fetch-buddy#readme",
   "packageManager": "yarn@4.7.0",
   "devDependencies": {
+    "@changesets/cli": "^2.28.1",
     "eslint": "^9.22.0",
     "eslint-config-greenflash": "^0.2.1",
     "ts-jolt": "^0.2.2",
+    "turbo": "^2.4.4",
     "typescript": "^5.8.2"
   }
 }

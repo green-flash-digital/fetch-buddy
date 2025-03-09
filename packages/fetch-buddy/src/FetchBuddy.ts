@@ -1,4 +1,8 @@
-import { ApiResponse, ApiQueryParams, StructuredApiRequest } from "./types.js";
+import type {
+  ApiResponse,
+  ApiQueryParams,
+  StructuredApiRequest,
+} from "./types.js";
 import { RequestError, formatStructuredApiRequest } from "./utils.js";
 
 export class FetchBuddy<Routes extends string> {
