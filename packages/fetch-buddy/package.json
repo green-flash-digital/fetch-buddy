@@ -1,6 +1,6 @@
 {
   "name": "fetch-buddy",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A TypeScript API client that creates fetch requests from a staticly typed structured object",
   "type": "module",
   "exports": {
