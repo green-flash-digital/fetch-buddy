@@ -1,0 +1,75 @@
+{
+  "name": "@gfdigital/fetch-buddy",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A TypeScript API client that creates fetch requests from a staticly typed structured object",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "sideEffects": false,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "build": "yarn tsc --project tsconfig.build.json",
+    "dev": "yarn build --watch"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/green-flash-digital/fetch-buddy.git"
+  },
+  "keywords": [
+    "api-client",
+    "fetch",
+    "typescript",
+    "http-client",
+    "request",
+    "rest-api",
+    "typed-requests",
+    "type-safe",
+    "structured-requests",
+    "fetch-wrapper",
+    "http-wrapper",
+    "async-fetch",
+    "api-wrapper",
+    "client-library",
+    "http",
+    "network-requests",
+    "typescript-library",
+    "fetch-buddy",
+    "fetch-api",
+    "promise-based",
+    "request-interceptor",
+    "middleware",
+    "error-handling",
+    "typed-api-calls",
+    "request-builder",
+    "fetch-helper",
+    "typed-fetch",
+    "json-api",
+    "data-fetching",
+    "dynamic-requests",
+    "frontend",
+    "backend",
+    "node-fetch"
+  ],
+  "author": "Drew DeCarme (drew@greenflash.digital)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/green-flash-digital/fetch-buddy/issues"
+  },
+  "homepage": "https://github.com/green-flash-digital/fetch-buddy#readme",
+  "packageManager": "yarn@4.7.0",
+  "devDependencies": {
+    "eslint": "^9.22.0",
+    "eslint-config-greenflash": "^0.2.1",
+    "ts-jolt": "^0.2.2",
+    "typescript": "^5.8.2"
+  }
+}
