@@ -1,5 +1,11 @@
 # fetch-buddy
 
+## 0.3.2
+
+### Patch Changes
+
+- 8f270bc: Handles OK responses gracefully
+
 ## 0.3.1
 
 ### Patch Changes
