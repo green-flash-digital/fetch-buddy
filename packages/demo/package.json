@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@linaria/core": "^6.2.0",
+    "clsx": "^2.1.1",
     "fetch-buddy": "0.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -17,9 +19,14 @@
     "swr": "^2.3.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.26.9",
+    "@babel/preset-react": "^7.26.3",
+    "@babel/preset-typescript": "^7.26.0",
+    "@types/babel__core": "^7",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react-swc": "^3.8.0",
+    "@wyw-in-js/vite": "^0.5.5",
     "mockingjson": "^0.0.4",
     "typescript": "~5.7.2",
     "vite": "^6.2.0"

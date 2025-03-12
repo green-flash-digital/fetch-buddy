@@ -2,6 +2,7 @@ import type {
   ApiResponse,
   ApiQueryParams,
   StructuredApiRequest,
+  ApiRequest,
 } from "./types.js";
 import { RequestError, formatStructuredApiRequest } from "./utils.js";
 
@@ -82,6 +83,36 @@ export class FetchBuddy<Routes extends string> {
     return this.request<R>(url, {
       ...init,
       method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        ...(init?.headers ?? {}),
+      },
+    });
+  }
+
+  post<R extends ApiResponse, B extends ApiRequest>(
+    url: string,
+    body: B,
+    init?: RequestInit
+  ): Promise<R>;
+  post<R extends ApiResponse, B extends ApiRequest, Q extends ApiQueryParams>(
+    args: StructuredApiRequest<Routes, Q>,
+    body: B,
+    init?: RequestInit
+  ): Promise<R>;
+  post<R extends ApiResponse, B extends ApiRequest, Q extends ApiQueryParams>(
+    args: string | StructuredApiRequest<Routes, Q>,
+    body: B,
+    init?: RequestInit
+  ): Promise<R> {
+    const url =
+      typeof args === "string"
+        ? args
+        : formatStructuredApiRequest<Routes, Q>(args);
+    return this.request<R>(url, {
+      ...init,
+      method: "POST",
+      body: JSON.stringify(body),
       headers: {
         "Content-Type": "application/json",
         ...(init?.headers ?? {}),

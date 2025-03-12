@@ -10,6 +10,8 @@ import { useCallback, useEffect, useMemo } from "react";
 import useSWR, { SWRConfig } from "swr";
 import type { Product, Pagination } from "mockingjson";
 
+import { List } from "../../components/List";
+
 type ApiRoutes = "/products";
 
 const fetchBuddy = new FetchBuddy<ApiRoutes>({
@@ -91,7 +93,10 @@ export function WithSWR() {
 }
 
 function WithSWRContent() {
-  const res = useGet<Pagination<Product>>({ root: "/products" });
+  const res = useGet<Pagination<Product>>({
+    root: "/products",
+    queryParams: {},
+  });
 
   if (res.isLoading) {
     return <div>Loading...</div>;
@@ -102,5 +107,14 @@ function WithSWRContent() {
   if (typeof res.data === "undefined") {
     return <div>No data</div>;
   }
-  return <ul></ul>;
+  return (
+    <List>
+      {res.data.data.map((product) => (
+        <li key={product.id}>
+          <div>{product.title}</div>
+          <p>{product.description}</p>
+        </li>
+      ))}
+    </List>
+  );
 }
