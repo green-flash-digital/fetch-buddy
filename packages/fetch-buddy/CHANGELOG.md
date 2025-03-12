@@ -1,5 +1,11 @@
 # fetch-buddy
 
+## 0.3.1
+
+### Patch Changes
+
+- 2c9fad0: Makes the ApiQueryParams generic optional
+
 ## 0.3.0
 
 ### Minor Changes
