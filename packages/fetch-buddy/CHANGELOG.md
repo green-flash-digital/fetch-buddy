@@ -1,5 +1,11 @@
 # fetch-buddy
 
+## 0.3.0
+
+### Minor Changes
+
+- 338e898: Removes overloads for a combined type signature
+
 ## 0.2.1
 
 ### Patch Changes
