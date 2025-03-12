@@ -36,11 +36,32 @@ export class FetchBuddy<Routes extends string> {
     });
   }
 
-  private async handleResponseOk<R>(res: Response) {
+  private async handleResponseOk(res: Response) {
     try {
-      return (await res.json()) as R;
+      // Check if response is explicitly empty (No Content)
+      if (res.status === 204 || res.status === 205) {
+        return null;
+      }
+
+      // Check if Content-Length header is 0 (not guaranteed in all responses)
+      const contentLength = res.headers.get("Content-Length");
+      if (contentLength === "0") {
+        return null;
+      }
+
+      // Check Content-Type before parsing
+      const contentType = res.headers.get("Content-Type") || "";
+      if (contentType.includes("application/json")) {
+        return await res.json();
+      }
+
+      if (contentType.includes("text/")) {
+        return await res.text();
+      }
+
+      return res; // Return raw response for unknown types
     } catch (error) {
-      throw await this.getResponseError(res, error);
+      throw await this.getResponseError(res.clone(), error);
     }
   }
 
@@ -56,7 +77,7 @@ export class FetchBuddy<Routes extends string> {
         },
       });
       if (res.ok) {
-        return await this.handleResponseOk<R>(res);
+        return (await this.handleResponseOk(res)) as R;
       }
       throw await this.getResponseError(res, res.statusText);
     } catch (error) {

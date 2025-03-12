@@ -1,5 +1,5 @@
-export type ApiResponse = Record<string, unknown> | Record<string, unknown>[];
-export type ApiRequest = Record<string, unknown> | Record<string, unknown>[];
+export type ApiResponse = unknown;
+export type ApiRequest = unknown;
 export type ApiQueryParams = Record<
   string,
   string | number | boolean | undefined | null
