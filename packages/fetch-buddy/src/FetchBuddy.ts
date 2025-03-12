@@ -67,7 +67,7 @@ export class FetchBuddy<Routes extends string> {
     }
   }
 
-  get<R extends ApiResponse, Q extends ApiQueryParams>(
+  get<R extends ApiResponse, Q extends ApiQueryParams = ApiQueryParams>(
     args: string | StructuredApiRequest<Routes, Q>,
     init?: RequestInit
   ): Promise<R> {
@@ -85,7 +85,11 @@ export class FetchBuddy<Routes extends string> {
     });
   }
 
-  post<R extends ApiResponse, B extends ApiRequest, Q extends ApiQueryParams>(
+  post<
+    R extends ApiResponse,
+    B extends ApiRequest,
+    Q extends ApiQueryParams = ApiQueryParams
+  >(
     args: string | StructuredApiRequest<Routes, Q>,
     body: B,
     init?: RequestInit
