@@ -67,11 +67,6 @@ export class FetchBuddy<Routes extends string> {
     }
   }
 
-  get<R extends ApiResponse>(url: string, init?: RequestInit): Promise<R>;
-  get<R extends ApiResponse, Q extends ApiQueryParams>(
-    args: StructuredApiRequest<Routes, Q>,
-    init?: RequestInit
-  ): Promise<R>;
   get<R extends ApiResponse, Q extends ApiQueryParams>(
     args: string | StructuredApiRequest<Routes, Q>,
     init?: RequestInit
@@ -90,16 +85,6 @@ export class FetchBuddy<Routes extends string> {
     });
   }
 
-  post<R extends ApiResponse, B extends ApiRequest>(
-    url: string,
-    body: B,
-    init?: RequestInit
-  ): Promise<R>;
-  post<R extends ApiResponse, B extends ApiRequest, Q extends ApiQueryParams>(
-    args: StructuredApiRequest<Routes, Q>,
-    body: B,
-    init?: RequestInit
-  ): Promise<R>;
   post<R extends ApiResponse, B extends ApiRequest, Q extends ApiQueryParams>(
     args: string | StructuredApiRequest<Routes, Q>,
     body: B,
@@ -109,6 +94,7 @@ export class FetchBuddy<Routes extends string> {
       typeof args === "string"
         ? args
         : formatStructuredApiRequest<Routes, Q>(args);
+
     return this.request<R>(url, {
       ...init,
       method: "POST",
