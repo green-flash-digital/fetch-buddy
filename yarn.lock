@@ -905,7 +905,7 @@ __metadata:
     "@vitejs/plugin-react-swc": "npm:^3.8.0"
     "@wyw-in-js/vite": "npm:^0.5.5"
     clsx: "npm:^2.1.1"
-    fetch-buddy: "npm:0.2.1"
+    fetch-buddy: "npm:0.3.0"
     mockingjson: "npm:^0.0.4"
     react: "npm:^19.0.0"
     react-dom: "npm:^19.0.0"
@@ -2950,7 +2950,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fetch-buddy@npm:0.2.1, fetch-buddy@workspace:packages/fetch-buddy":
+"fetch-buddy@npm:0.3.0, fetch-buddy@workspace:packages/fetch-buddy":
   version: 0.0.0-use.local
   resolution: "fetch-buddy@workspace:packages/fetch-buddy"
   dependencies:
