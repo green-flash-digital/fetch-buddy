@@ -1,3 +1,4 @@
+import { FetchBuddyMiddleware } from "./FetchBuddyMiddleware.js";
 import type {
   ApiResponse,
   ApiQueryParams,
@@ -9,10 +10,18 @@ import { RequestError, formatStructuredApiRequest } from "./utils.js";
 export class FetchBuddy<Routes extends string> {
   private _baseUrl: string;
   private _headers: Headers;
+  middleware: {
+    request: FetchBuddyMiddleware<RequestInit>;
+    response: FetchBuddyMiddleware<Response>;
+  };
 
   constructor({ domain, version }: { domain: string; version?: string }) {
     this._baseUrl = `${domain}${version ? `/${version}` : ""}`;
     this._headers = new Headers();
+    this.middleware = {
+      request: new FetchBuddyMiddleware<RequestInit>(),
+      response: new FetchBuddyMiddleware<Response>(),
+    };
   }
 
   get headers(): Headers {
@@ -65,18 +74,28 @@ export class FetchBuddy<Routes extends string> {
     }
   }
 
-  private async request<R>(url: string, init?: RequestInit): Promise<R> {
+  async request<R>(url: string, init?: RequestInit): Promise<R> {
     try {
       const reqUrl = this._baseUrl.concat(url);
-      const reqHeaders = Object.fromEntries(this.headers);
-      const res = await fetch(reqUrl, {
+      let reqInit: RequestInit = {
         ...init,
         headers: {
-          ...reqHeaders,
+          ...Object.fromEntries(this.headers),
           ...(init?.headers ?? {}),
         },
-      });
-      if (res.ok) {
+      };
+
+      // Run request middleware
+      reqInit = await this.middleware.request.apply(reqInit);
+
+      // Run request
+      const res = await fetch(reqUrl, reqInit);
+
+      // Run response middleware
+      const modifiedRes = await this.middleware.response.apply(res);
+
+      // Handle the modified response
+      if (modifiedRes.ok) {
         return (await this.handleResponseOk(res)) as R;
       }
       throw await this.getResponseError(res, res.statusText);
@@ -119,6 +138,16 @@ export class FetchBuddy<Routes extends string> {
       typeof args === "string"
         ? args
         : formatStructuredApiRequest<Routes, Q>(args);
+
+    // Let the body of the request auto determine the headers
+    if (body instanceof FormData) {
+      return this.request<R>(url, {
+        ...init,
+        method: "POST",
+        body,
+        headers: init?.headers ?? {},
+      });
+    }
 
     return this.request<R>(url, {
       ...init,

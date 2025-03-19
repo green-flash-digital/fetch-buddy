@@ -65,6 +65,7 @@
     "node-fetch"
   ],
   "devDependencies": {
+    "@gfdigital/tsconfig": "^0.3.1",
     "@types/node": "^22.13.10",
     "eslint-config-greenflash": "^0.2.1",
     "ts-jolt": "^0.2.2",

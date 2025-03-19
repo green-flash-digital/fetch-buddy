@@ -1,7 +1,7 @@
-import type {
-  ApiQueryParams,
-  ApiRequestError,
-  StructuredApiRequest,
+import {
+  type ApiQueryParams,
+  type StructuredApiRequest,
+  type ApiRequestError,
 } from "./types.js";
 
 /**
