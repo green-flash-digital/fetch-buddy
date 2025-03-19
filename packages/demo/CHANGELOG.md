@@ -1,5 +1,12 @@
 # @fetch-buddy/demo
 
+## 0.0.6
+
+### Patch Changes
+
+- Updated dependencies [5e6234a]
+  - fetch-buddy@0.4.0
+
 ## 0.0.5
 
 ### Patch Changes

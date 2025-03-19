@@ -1,5 +1,11 @@
 # fetch-buddy
 
+## 0.4.0
+
+### Minor Changes
+
+- 5e6234a: Adds middleware support allow for standing in between the request and response. This is helpful for when setting access tokens from 3rd party libraries in the header of the request.
+
 ## 0.3.2
 
 ### Patch Changes
